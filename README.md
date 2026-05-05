@@ -1,304 +1,128 @@
-\# 🛒 E-Commerce Data Platform
+# 🛒 E-Commerce Data Platform
 
+An end-to-end data engineering and analytics pipeline for e-commerce insights, built using **Kafka**, **DuckDB**, **dbt**, and **Dash**.
 
+---
 
-An end-to-end data engineering and analytics pipeline for e-commerce insights, built using \*\*Kafka, DuckDB, dbt, and Dash\*\*.
-
-
-
-\---
-
-
-
-\## 🚀 Overview
-
-
+## 🚀 Overview
 
 This project simulates a real-world data platform that ingests, processes, transforms, and visualizes e-commerce data.
 
-
-
 It demonstrates:
+- Data ingestion pipeline  
+- Data modeling using dbt (Silver → Gold layers)  
+- Analytical queries using DuckDB  
+- Interactive dashboard using Dash  
 
+---
 
+## 🏗️ Architecture
 
-\* Data ingestion
+Kafka (Data Simulation / Streaming)  
+↓  
+Parquet Files (Raw Data Storage)  
+↓  
+DuckDB (Analytical Warehouse)  
+↓  
+dbt (Transformations: Silver → Gold Models)  
+↓  
+Dash (Interactive Dashboard)  
 
-\* Data modeling (dbt)
+---
 
-\* Analytical queries
+## 📁 Project Structure
 
-\* Interactive dashboard
+ecom-data-platform/  
+├── ingestion/            # Data ingestion scripts  
+├── data/                 # Raw & processed data (Parquet + DuckDB)  
+├── processing/dbt/       # dbt models (Silver + Gold layers)  
+├── dashboard/            # Dash application  
+├── logs/                 # Pipeline logs  
+├── requirements.txt      # Python dependencies  
+├── docker-compose.yml    # Optional container setup  
+└── README.md  
 
+---
 
+## ⚙️ Setup Instructions
 
-\---
+### 1. Clone the repository
 
+git clone https://github.com/ARJUNRAJ01/ecom-data-platform.git  
+cd ecom-data-platform  
 
+### 2. Install dependencies
 
-\## 🧱 Architecture
+pip install -r requirements.txt  
 
+---
 
+## ▶️ Running the Pipeline
 
-```
+### Step 1: Run dbt models
 
-Kafka (Streaming / Simulation)
+cd processing/dbt  
+dbt run  
 
-&#x20;       ↓
+This will create:
+- Silver tables (cleaned data)  
+- Gold tables (analytics-ready data)  
 
-Parquet Files (Raw Storage)
+---
 
-&#x20;       ↓
+### Step 2: Run Dashboard
 
-DuckDB (Warehouse)
+python dashboard/app.py  
 
-&#x20;       ↓
+Open in browser:  
+http://localhost:8050  
 
-dbt (Transformations: Silver → Gold)
+---
 
-&#x20;       ↓
+## 📊 Dashboard Features
 
-Dash (Analytics Dashboard)
+- 📈 Revenue overview  
+- 👤 Customer 360 analytics  
+- 🛍️ Product insights  
+- 💳 Transaction analysis  
 
-```
+---
 
+## 🧠 Data Models
 
+### Silver Layer
+- silver_transactions  
+- silver_web_logs  
+- silver_reviews  
 
-\---
+### Gold Layer
+- gold_customer_360  
 
+---
 
+## 📌 Tech Stack
 
-\## 📊 Features
+- Kafka → Data simulation / streaming  
+- DuckDB → Analytical database  
+- dbt → Data transformation & modeling  
+- Dash (Plotly) → Visualization dashboard  
+- Python → Core development  
 
+---
 
+## 💡 Key Learnings
 
-\### 🔹 Customer 360 View
+- End-to-end data pipeline design  
+- dbt-based modular transformations  
+- Analytical modeling with DuckDB  
+- Building interactive dashboards  
 
+---
 
+## 🔮 Future Improvements
 
-\* Total orders
-
-\* Total spend
-
-\* Average order value
-
-\* Return rate
-
-\* Customer tier (Bronze / Silver / Gold / Platinum)
-
-
-
-\### 🔹 Revenue Analytics
-
-
-
-\* Total revenue calculation
-
-\* Orders \& customer metrics
-
-
-
-\### 🔹 Product Insights
-
-
-
-\* Average rating by category
-
-\* Review distribution
-
-
-
-\### 🔹 Transaction Analysis
-
-
-
-\* Revenue by payment method
-
-\* Purchase patterns
-
-
-
-\---
-
-
-
-\## 🗂️ Project Structure
-
-
-
-```
-
-ecom-data-platform/
-
-│
-
-├── dashboard/          # Dash app
-
-├── ingestion/          # Kafka / data generation
-
-├── processing/
-
-│   └── dbt/            # dbt models (silver, gold)
-
-├── data/               # DuckDB + parquet (ignored in Git)
-
-├── requirements.txt
-
-└── README.md
-
-```
-
-
-
-\---
-
-
-
-\## ⚙️ Tech Stack
-
-
-
-\* \*\*Python\*\*
-
-\* \*\*DuckDB\*\* (Analytical database)
-
-\* \*\*dbt\*\* (Data transformations)
-
-\* \*\*Dash / Plotly\*\* (Dashboard)
-
-\* \*\*Kafka\*\* (Data ingestion simulation)
-
-
-
-\---
-
-
-
-\## ▶️ How to Run
-
-
-
-\### 1️⃣ Install dependencies
-
-
-
-```
-
-pip install -r requirements.txt
-
-```
-
-
-
-\---
-
-
-
-\### 2️⃣ Run dbt transformations
-
-
-
-```
-
-cd processing/dbt
-
-dbt run
-
-```
-
-
-
-\---
-
-
-
-\### 3️⃣ Start dashboard
-
-
-
-```
-
-cd ../../
-
-python dashboard/app.py
-
-```
-
-
-
-\---
-
-
-
-\### 4️⃣ Open in browser
-
-
-
-```
-
-http://localhost:8050
-
-```
-
-
-
-\---
-
-
-
-\## 📌 Key Learnings
-
-
-
-\* Built a modular data pipeline architecture
-
-\* Designed star-like analytical models using dbt
-
-\* Handled schema mismatches and debugging
-
-\* Integrated backend analytics with frontend dashboard
-
-
-
-\---
-
-
-
-\## 🚀 Future Improvements
-
-
-
-\* Real-time Kafka streaming dashboard
-
-\* Customer churn prediction (ML)
-
-\* CLV (Customer Lifetime Value) modeling
-
-\* Airflow orchestration
-
-
-
-\---
-
-
-
-\## 👨‍💻 Author
-
-
-
-\*\*Arjun Raj\*\*
-
-
-
-\---
-
-
-
-\## ⭐ If you like this project
-
-
-
-Give it a star ⭐ on GitHub!
-
-
+- Add Airflow for orchestration  
+- Real-time Kafka integration  
+- Machine learning (customer segmentation / recommendations)  
+- Cloud deployment (AWS / GCP)  
 
